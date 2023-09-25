@@ -1,0 +1,206 @@
+
+#1Q. merging two list and sorting (using insertion sorting)
+
+lst1 = [2,3,4,5,6,7]
+lst2 = [6,77,88,9,90]
+
+lst12 = lst1+lst2
+
+for i in range(1,len(lst12)):
+    if lst12[i] < lst12[i-1]:
+            for j in range(i):
+                if lst12[i] < lst12[j]:
+                    lst12[i], lst12[j] = lst12[j], lst12[i]
+
+print(lst12) 
+
+output : [2, 3, 4, 5, 6, 6, 7, 9, 77, 88, 90]
+
+
+#2Q. count no of letters,spaces and digits in a string
+
+string1="i 143 india"
+l = list(string1)
+
+print(l)
+
+res = []
+for ele in l:
+    res.extend(ord(num) for num in ele)
+    
+print(res)
+
+count_digit,count_space,count_alpha = 0,0,0
+for i in res:
+    if i == 32:
+        count_space = count_space+1
+    if i >= 97 and i<= 122:
+        count_alpha = count_alpha+1
+    if i>=48 and i<=57:
+        count_digit = count_digit+1
+        
+print(count_space)
+print(count_digit)
+print(count_alpha)
+
+output : 2
+	 3
+	 6
+        
+#3Q. counter of alphabets in a string
+
+
+str1="netherlands"
+
+from collections import defaultdict, Counter 
+my_dict = {}
+for letter in str1:
+    my_dict[letter] = my_dict.get(letter, 0) + 1
+print(my_dict)
+
+output : {'n': 2, 'e': 2, 't': 1, 'h': 1, 'r': 1, 'l': 1, 'a': 1, 'd': 1, 's': 1}
+
+method 2
+
+lst = list(str1)
+print(lst)
+mydict = {}
+counter = 1
+for i in lst:
+    if mydict.get(i):
+        mydict[i] = counter+1
+    else:
+        mydict[i]= counter
+print(mydict)
+
+#4Q. input ="geeksforgeeeks"
+Output = e g k s
+print the characters that are repeating more than twice
+
+mydict = {}
+counter = 1
+for i in input:
+    if mydict.get(i):
+        mydict[i] = counter+1
+    else:
+        mydict[i]= counter
+print(mydict)
+output = [k for k,v in mydict.items() if v >= 2]
+print(output)
+
+output: {'g': 2, 'e': 2, 'k': 2, 's': 2, 'f': 1, 'o': 1, 'r': 1}
+
+#5Q. calculate avg of the dictionary
+data = {'Math':81, 'Physics':83, 'Chemistry':87}
+xs = data.values()
+avg = sum(xs) / len(xs)
+print(avg)
+
+# method 2
+avg1= [each for each in data.values()]
+print(avg1)
+        
+output : 83.66666666666667
+
+#6Q. DICTIONARY SORTING
+data = {'Math':89, 'Physics':37, 'Chemistry':80}
+
+sorted_list = sorted(data.items(), key = lambda x:x[1])
+data.clear()
+for key, value in sorted_list:
+    data[key] = value
+print(data)
+
+output : {'Physics': 37, 'Chemistry': 80, 'Math': 89}
+
+
+#7Q. reverse dictionary sorting 
+rev_sorted_list = sorted(data.items(), key = lambda x:x[1], reverse = True)
+
+rev_dict = {}
+for key,value in rev_sorted_list:
+    rev_dict[key] = value
+print(rev_dict)
+
+output: {'Math': 89, 'Chemistry': 80, 'Physics': 37}
+
+#8Q. dictionary sorting with static value
+data = {'Math':89, 'Physics':37, 'Chemistry':80}
+new_data = {}
+for k,v in data.items():
+    if v<=37:
+        new_data[k] = v
+print(new_data)
+
+output : {'Physics': 37}
+
+#9Q. dictionary sorting without using lowest value or static value
+dict1={}
+sorted_list = sorted(data.items())
+t = sorted_list[-1]
+x,y=t
+dict1[x]=y
+print(dict1)
+
+output : {'Physics': 37}
+
+#10Q. Given an array of integers nums and an integer target, return the two numbers such that they add up to target.
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+You can return the answer in any order.
+
+nums = [2,7,11,15]
+target = 9
+Output= [2,7]
+
+new_items = []
+output = []
+for i in range(1,len(nums)):
+    if nums[i] + nums[i-1] == target:
+        new_items = nums[i] , nums[i-1]
+        output.extend(new_items)
+print(output)
+
+output : [7, 2]
+
+#11Q similarly sum of elements of the list
+nums = [2,7,11,15]
+target = 35
+Output= [2,7,11,15]
+
+Sum = []
+templst = []
+output = []
+for i in range(0,len(nums)):
+    templst = nums[:i+1]
+    Sum = sum(templst)
+    if Sum == target:
+        print(Sum)
+        output.extend(templst)
+
+print(templst)
+
+
+#12Q for the given str1 calculate no of time the target string is repeated
+str1 = "bakmloenlfgalkblzonoea"
+target = "ballon"
+output = 2
+def stringcounter(str1,target):
+    templst = list(str1)
+    templst2 = list(target)
+    new2 = []
+    out={}
+    for a in templst:
+        if a in templst2:
+            new2.append(a)
+    x = " ".join(new2)
+    
+    for i in x.split():
+        out[i] = out.get(i,0)+1
+    output = min(out.values())
+    return output
+        
+output = stringcounter(str1,target)
+print(output)
+ 
+output: 2   
+    
