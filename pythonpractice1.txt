@@ -68,7 +68,7 @@ mydict = {}
 counter = 1
 for i in lst:
     if mydict.get(i):
-        mydict[i] = counter+1
+        mydict[i] = mydict[i]+1
     else:
         mydict[i]= counter
 print(mydict)
